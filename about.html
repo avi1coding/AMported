@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About - AMported</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-green: #4caf50;
+        --dark-bg: #0a0a0a;
+        --card-bg: #1a1a1a;
+        --secondary-bg: #2a2a2a;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --text-muted: #888888;
+        --accent: #00ff88;
+        --gradient: linear-gradient(135deg, #4caf50, #00ff88);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--dark-bg);
+        color: var(--text-primary);
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Animated background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(76, 175, 80, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 255, 136, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(76, 175, 80, 0.05) 0%,
+            transparent 50%
+          );
+        animation: backgroundMove 20s ease-in-out infinite;
+        z-index: -1;
+      }
+
+      @keyframes backgroundMove {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(30px, -30px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-20px, 20px) rotate(240deg);
+        }
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(
+          135deg,
+          rgba(42, 42, 42, 0.9),
+          rgba(26, 26, 26, 0.9)
+        );
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(76, 175, 80, 0.3);
+        padding: 2rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(76, 175, 80, 0.1),
+          transparent
+        );
+        animation: headerShine 3s ease-in-out infinite;
+      }
+
+      @keyframes headerShine {
+        0% {
+          left: -100%;
+        }
+        50% {
+          left: 100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      .logo {
+        font-size: 3rem;
+        font-weight: 900;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+        position: relative;
+        z-index: 1;
+      }
+
+      .subtitle {
+        margin-top: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        font-weight: 300;
+      }
+
+      /* Navigation */
+      nav {
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+      }
+
+      nav a.active,
+      nav a:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+      }
+
+      nav a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        transition: left 0.3s ease;
+        z-index: -1;
+      }
+
+      nav a.active::before,
+      nav a:hover::before {
+        left: 0;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 4rem 0;
+      }
+
+      .page-title {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .about-section {
+        margin-bottom: 4rem;
+      }
+
+      .section-card {
+        background: linear-gradient(
+          145deg,
+          rgba(42, 42, 42, 0.9),
+          rgba(26, 26, 26, 0.9)
+        );
+        border: 1px solid rgba(76, 175, 80, 0.2);
+        border-radius: 20px;
+        padding: 3rem;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .section-card:hover {
+        border-color: rgba(76, 175, 80, 0.4);
+        transform: translateY(-5px);
+      }
+
+      .section-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient);
+        opacity: 0.03;
+        z-index: 0;
+      }
+
+      .section-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-green);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .section-title i {
+        font-size: 1.8rem;
+      }
+
+      .section-text {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: rgba(42, 42, 42, 0.5);
+        border: 1px solid rgba(76, 175, 80, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        border-color: var(--primary-green);
+        transform: translateY(-3px);
+        background: rgba(42, 42, 42, 0.8);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .feature-text {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(
+          135deg,
+          rgba(42, 42, 42, 0.9),
+          rgba(26, 26, 26, 0.9)
+        );
+        border-top: 1px solid rgba(76, 175, 80, 0.3);
+        padding: 3rem 0 2rem 0;
+        text-align: center;
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .social-links {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(76, 175, 80, 0.1);
+        color: var(--primary-green);
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: var(--primary-green);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 2.2rem;
+        }
+
+        .page-title {
+          font-size: 2.2rem;
+        }
+
+        .section-card {
+          padding: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.6rem;
+        }
+
+        .nav-container {
+          gap: 1rem;
+        }
+
+        nav a {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+        <div class="container">
+          <div class="nav-container">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-server"></i> Private Server</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+          </div>
+        </div>
+      </nav>
+
+
+      <header class = "mb-5">
+        <div class="container">
+          <h1 class="logo">AMported</h1>
+          <p class="subtitle">Learn More About Us</p>
+        </div>
+      </header>
+
+  
+  
+<div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-user"></i>
+                About the Creator
+              </h2>
+              <p class="section-text">
+                Hi! I'm Avi Mehta, and I created AMported because I wanted to give students access to fun, 
+                unblocked games during their free time. I noticed that many gaming sites were blocked at school, 
+                and students didn't have a reliable place to play games during breaks or study hall.
+              </p>
+              <p class="section-text">
+                This isn't a school project or assignment - it's something I built on my own time because 
+                I believe students deserve a way to relax and have fun during their downtime. Gaming can be 
+                a great stress reliever and a fun way to take a break from studying.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-heart"></i>
+                Why I Made This
+              </h2>
+              <div class="features-grid">
+                <div class="feature-card">
+                  <i class="fas fa-graduation-cap feature-icon"></i>
+                  <h3 class="feature-title">For Students</h3>
+                  <p class="feature-text">Made specifically with students in mind who need a reliable gaming site that works at school</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-gift feature-icon"></i>
+                  <h3 class="feature-title">Completely Free</h3>
+                  <p class="feature-text">No ads, no subscriptions, no hidden costs - just free games for everyone</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-clock feature-icon"></i>
+                  <h3 class="feature-title">Quick Breaks</h3>
+                  <p class="feature-text">Perfect for study breaks, lunch periods, or any free time you have</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-shield-alt feature-icon"></i>
+                  <h3 class="feature-title">Safe to Use</h3>
+                  <p class="feature-text">All games are tested and safe - no malware or inappropriate content</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-mobile-alt feature-icon"></i>
+                  <h3 class="feature-title">Works Everywhere</h3>
+                  <p class="feature-text">Designed to work on school computers, Chromebooks, phones, and tablets</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-users feature-icon"></i>
+                  <h3 class="feature-title">Community Focused</h3>
+                  <p class="feature-text">Built by a student, for students - I understand what games you actually want to play</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-code"></i>
+                How I Built This
+              </h2>
+              <p class="section-text">
+                I taught myself web development to create AMported. The site is built using modern HTML, CSS, 
+                and JavaScript to ensure it loads quickly and works smoothly on any device. I spent countless 
+                hours testing different games and optimizing the site to make sure it works even on restricted 
+                school networks.
+              </p>
+              <p class="section-text">
+                Every game is carefully selected and tested to make sure it's appropriate for school and 
+                actually fun to play. I'm always looking for new games to add and ways to improve the site 
+                based on feedback from users like you.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Current Stats
+              </h2>
+              <p class="section-text">
+                Here's what AMported offers right now:
+              </p>
+              <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-number">12+</span>
+                  <span class="stat-label">Quality Games</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">100%</span>
+                  <span class="stat-label">Free Access</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">24/7</span>
+                  <span class="stat-label">Available</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">0</span>
+                  <span class="stat-label">Ads or Fees</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i>
+                Future Plans
+              </h2>
+              <p class="section-text">
+                I'm constantly working to improve AMported and add new features. Some things I'm planning include:
+              </p>
+              <ul style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; margin-left: 2rem; margin-top: 1rem;">
+                <li>Adding more popular games based on user requests</li>
+                <li>Improving load times and performance</li>
+                <li>Adding new categories and better search features</li>
+                <li>Creating a favorites system</li>
+                <li>Mobile app version (maybe!)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-envelope"></i>
+                Get in Touch
+              </h2>
+              <p class="section-text">
+                Have a game suggestion? Found a bug? Just want to say thanks? I'd love to hear from you! 
+                Your feedback helps me make AMported better for everyone.
+              </p>
+              <p class="section-text">
+                Remember, I'm doing this for free in my spare time because I want to help fellow students. 
+                Be patient with me if there are issues, and feel free to reach out with any problems or suggestions!
+              </p>
+              <div style="text-align: center; margin-top: 2rem;">
+                <a href="contact.html" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.8rem;
+                  background: var(--gradient);
+                  color: white;
+                  text-decoration: none;
+                  padding: 1rem 2rem;
+                  border-radius: 25px;
+                  font-weight: 600;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+                " 
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(76, 175, 80, 0.4)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(76, 175, 80, 0.3)'">
+                  <i class="fas fa-envelope"></i>
+                  Contact Me
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+
+   
+
+    <main class="main-content">
+      <div class="container">
+        <h1 class="page-title">About AMported</h1>
+        
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-rocket"></i>
+                Our Mission
+              </h2>
+              <p class="section-text">
+                AMported is dedicated to providing free, accessible, and high-quality gaming experiences 
+                for everyone. We believe that gaming should be open to all, without barriers, restrictions, 
+                or unnecessary complications. Our platform brings together the best unblocked games in one 
+                convenient location.
+              </p>
+              <p class="section-text">
+                Whether you're looking for a quick break during study time, want to unwind after work, 
+                or just need some entertainment during downtime, AMported has something for every type of gamer.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                What Makes Us Special
+              </h2>
+              <div class="features-grid">
+                <div class="feature-card">
+                  <i class="fas fa-bolt feature-icon"></i>
+                  <h3 class="feature-title">Lightning Fast</h3>
+                  <p class="feature-text">Optimized loading times and smooth gameplay performance across all devices</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-shield-alt feature-icon"></i>
+                  <h3 class="feature-title">Safe & Secure</h3>
+                  <p class="feature-text">All games are carefully vetted and hosted securely with no malware or harmful content</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-mobile-alt feature-icon"></i>
+                  <h3 class="feature-title">Mobile Friendly</h3>
+                  <p class="feature-text">Responsive design that works perfectly on desktop, tablet, and mobile devices</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-clock feature-icon"></i>
+                  <h3 class="feature-title">Always Updated</h3>
+                  <p class="feature-text">Regular updates with new games and improvements to existing content</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-search feature-icon"></i>
+                  <h3 class="feature-title">Easy Discovery</h3>
+                  <p class="feature-text">Powerful search and categorization to help you find your next favorite game</p>
+                </div>
+                <div class="feature-card">
+                  <i class="fas fa-heart feature-icon"></i>
+                  <h3 class="feature-title">Community Driven</h3>
+                  <p class="feature-text">Built with feedback from our community of passionate gamers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Platform Statistics
+              </h2>
+              <p class="section-text">
+                Since our launch, AMported has grown to become a trusted destination for unblocked gaming:
+              </p>
+              <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-number">12+</span>
+                  <span class="stat-label">Premium Games</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">100%</span>
+                  <span class="stat-label">Free Access</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">24/7</span>
+                  <span class="stat-label">Availability</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">0</span>
+                  <span class="stat-label">Hidden Fees</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-code"></i>
+                Technical Excellence
+              </h2>
+              <p class="section-text">
+                Our platform is built with modern web technologies to ensure the best possible 
+                gaming experience. We use advanced optimization techniques, CDN delivery, 
+                and responsive design principles to make sure games load quickly and run smoothly 
+                on any device.
+              </p>
+              <p class="section-text">
+                All games are hosted on reliable servers with 99.9% uptime, ensuring you can 
+                play whenever you want without interruption. Our clean, intuitive interface 
+                makes it easy to find and launch games with just a few clicks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-card fade-in">
+            <div class="section-content">
+              <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                Join Our Community
+              </h2>
+              <p class="section-text">
+                AMported isn't just a gaming platform - it's a community of players who share 
+                a passion for great games. We're always looking for feedback, suggestions, 
+                and new game recommendations from our users.
+              </p>
+              <p class="section-text">
+                Have a favorite game that's not on our platform? Found a bug or have a suggestion? 
+                We'd love to hear from you! Your input helps us make AMported better for everyone.
+              </p>
+              <div style="text-align: center; margin-top: 2rem;">
+                <a href="contact.html" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.8rem;
+                  background: var(--gradient);
+                  color: white;
+                  text-decoration: none;
+                  padding: 1rem 2rem;
+                  border-radius: 25px;
+                  font-weight: 600;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+                " 
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(76, 175, 80, 0.4)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(76, 175, 80, 0.3)'">
+                  <i class="fas fa-envelope"></i>
+                  Get In Touch
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div>© 2025 AMported - Premium Gaming Portal</div>
+            <div class="social-links">
+              Avi Mehta, 7th Grade, Zeta
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Add fade-in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements
+      document.querySelectorAll(".section-card, .feature-card").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add staggered animation delay to feature cards
+      document.querySelectorAll(".feature-card").forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    </script>
+  </body>
+</html>
